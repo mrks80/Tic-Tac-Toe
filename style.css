@@ -3,8 +3,8 @@ body {
     background-image: url(./img/background.jpg);
     background-size: cover;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 main {
@@ -67,3 +67,32 @@ td:hover {
 .d-none {
     display: none;
 }
+
+.make-lines {
+    position: relative;
+}
+
+.horizontal-line {
+    position: absolute;
+    width: 450px;
+    height: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: scaleX(0.0);
+    transition: transform 225ms ease-in-out;
+    z-index: 1;
+}
+
+.make-vertical {
+    transform: rotate(90deg) scaleX(0.0);
+}
+
+.make-diagonal-plus {
+    width: 600px;
+    transform: rotate(45deg) scaleX(0.0);
+}
+
+.make-diagonal-minus {
+    width: 600px;
+    transform: rotate(-45deg) scaleX(0.0);
+}
+
