@@ -2,6 +2,10 @@ fields = [];
 let currentShape = 'cross';
 let gameOver = false;
 
+let audio_background = new Audio('./audio/background_music_3:40.mp3');
+let audio_click = new Audio('./audio/click.mp3');
+let audio_win = new Audio('./audio/win_sound.mp3');
+
 function fillShape(id) {
     if (!fields[id] && !gameOver) {
 
@@ -9,10 +13,14 @@ function fillShape(id) {
             currentShape = 'circle';
             document.getElementById('player-1').classList.remove('player-inactive');
             document.getElementById('player-2').classList.add('player-inactive');
+            audio_click.play();
+            
+
         } else {
             currentShape = 'cross';
             document.getElementById('player-2').classList.remove('player-inactive');
             document.getElementById('player-1').classList.add('player-inactive');
+            audio_click.play();
         }
         fields[id] = currentShape;
         draw();
@@ -42,36 +50,76 @@ function checkForWin() {
         winner = fields[0];
         document.getElementById('line-1').style.transform = 'scaleX(1)';
     }
+
     // Second row horizontal 
     if (fields[3] == fields[4] && fields[4] == fields[5] && fields[3]) {
         winner = fields[3];
+        document.getElementById('line-2').style.transform = 'scaleX(1)';
     }
+
     // Third row horizontal 
     if (fields[6] == fields[7] && fields[7] == fields[8] && fields[6]) {
         winner = fields[6];
+        document.getElementById('line-3').style.transform = 'scaleX(1)';
     }
+    
     // First row vertical
     if (fields[0] == fields[3] && fields[3] == fields[6] && fields[0]) {
         winner = fields[0];
+        document.getElementById('line-4').style.transform = 'scaleX(1) rotate(90deg)';
     }
+
     // Second row vertical
     if (fields[1] == fields[4] && fields[4] == fields[7] && fields[1]) {
         winner = fields[1];
+        document.getElementById('line-5').style.transform = 'scaleX(1) rotate(90deg)';
     }
+
     // Third row vertical 
     if (fields[2] == fields[5] && fields[5] == fields[8] && fields[2]) {
         winner = fields[2];
+        document.getElementById('line-6').style.transform = 'scaleX(1) rotate(90deg)';
     }
+
     // First row diagonal
     if (fields[0] == fields[4] && fields[4] == fields[8] && fields[0]) {
         winner = fields[0];
+        document.getElementById('line-7').style.transform = 'scaleX(1) rotate(45deg)';
     }
     // Second row diagonal 
     if (fields[2] == fields[4] && fields[4] == fields[6] && fields[2]) {
         winner = fields[2];
+        document.getElementById('line-8').style.transform = 'scaleX(1) rotate(-45deg)';
     }
 
     if (winner) {
         console.log('Gewonnen:', winner)
+        gameOver = true;
+        audio_win.play();
     }
+}
+
+function restart() {
+    gameOver = false;
+    fields = [];
+
+    for (let i = 1; i < 8; i++) {
+        document.getElementById('line-' +i).classList.add('d-none');
+    }
+
+    for (let i = 0; i < 9; i++) {
+        document.getElementById('circle-' +i).classList.add('d-none');
+        document.getElementById('cross-' +i).classList.add('d-none');
+    }
+
+}
+
+function playMusic() {
+    audio_background.play();
+    audio_background.loop = true;
+}
+
+function stopMusic() {
+    audio_background.currentTime =0;
+    audio_background.pause();
 }
