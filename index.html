@@ -12,11 +12,26 @@
 </head>
 
 <body>
+
+    <h1>Tic Tac Toe</h1>
+
     <main>
         <div class="buttons">
             <button onclick="restart()" id="restart-btn" class="restart-btn">Restart</button>
             <button onclick="playMusic()" class="sound">Music On</button>
-            <button onclick="stopMusic()" class="sound">Sound Off</button>
+            <button onclick="stopMusic()" class="sound">Music Off</button>
+
+            <div class="volume" onchange="changeVolume()">
+                <label for="volume">Volume</label>
+                <select name="volume" id="volume">
+                    <option value="1">100%</option>
+                    <option selected="" value="0.75">75%</option>
+                    <option selected="" value="0.5">50%</option>
+                    <option selected="" value="0.25">25%</option>
+                    <option value="0">0%</option>
+                </select>
+            </div>
+
         </div>
 
         <div class="make-lines">
