@@ -104,6 +104,7 @@ function checkForWin() {
         console.log('Gewonnen:', winner)
         gameOver = true;
         audio_win.play();
+        endScreen();
     }
 }
 
@@ -111,15 +112,17 @@ function restart() {
     gameOver = false;
     fields = [];
 
-    for (let i = 1; i < 8; i++) {
+    for (let i = 1; i < 9; i++) {
         document.getElementById('line-' + i).classList.add('d-none');
+        document.getElementById('circle-win').classList.add('d-none');
+        document.getElementById('cross-win').classList.add('d-none');
     }
 
     for (let i = 0; i < 9; i++) {
         document.getElementById('circle-' + i).classList.add('d-none');
         document.getElementById('cross-' + i).classList.add('d-none');
     }
-
+  
 }
 
 function playMusic() {
@@ -134,9 +137,23 @@ function stopMusic() {
 
 function changeVolume() {
     volume = document.getElementById("volume").value;
-        audio_background.volume = volume;
-        audio_win.volume = volume;
-        audio_click.volume = volume;
+    audio_background.volume = volume;
+    audio_win.volume = volume;
+    audio_click.volume = volume;
 
-        console.log(volume);
+    console.log(volume);
 }
+
+function endScreen() {
+    if (currentShape === 'cross') {
+        document.getElementById('cross-win').classList.remove('d-none');
+    }
+
+    if (currentShape === 'circle') {
+        document.getElementById('circle-win').classList.remove('d-none');
+        // document.getElementById('circle-win').style.transform = 'scaleX(1) rotate(-15deg)';
+        document.getElementById('cross-win').classList.add('d-none');
+    }
+
+}
+

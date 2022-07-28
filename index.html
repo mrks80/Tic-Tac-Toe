@@ -16,6 +16,7 @@
     <h1>Tic Tac Toe</h1>
 
     <main>
+
         <div class="buttons">
             <button onclick="restart()" id="restart-btn" class="restart-btn">Restart</button>
             <button onclick="playMusic()" class="sound">Music On</button>
@@ -36,16 +37,16 @@
 
         <div class="make-lines">
 
-            <div id="line-1" class="horizontal-line" style="top: 17%; left: 25px;"></div>
-            <div id="line-2" class="horizontal-line" style="top: 50%; left: 25px;"></div>
-            <div id="line-3" class="horizontal-line" style="top: 83%; left: 25px;"></div>
+            <div id="line-1" class="horizontal-line" style="top: -165px; left: 21px;"></div>
+            <div id="line-2" class="horizontal-line" style="top: 50%; left: 21px;"></div>
+            <div id="line-3" class="horizontal-line" style="top: 163px; left: 21px;"></div>
 
             <div id="line-4" class="horizontal-line  make-vertical" style="top: 50%; left: -143px;"></div>
             <div id="line-5" class="horizontal-line  make-vertical" style="top: 50%; left: 22px;"></div>
             <div id="line-6" class="horizontal-line  make-vertical" style="top: 50%; left: 185px;"></div>
 
-            <div id="line-7" class="horizontal-line  make-diagonal-plus" style="top: 49%; left: -58px;"></div>
-            <div id="line-8" class="horizontal-line  make-diagonal-minus" style="top: 49%; left: -50px;"></div>
+            <div id="line-7" class="horizontal-line  make-diagonal-plus" style="top: -1px; left: -54px;"></div>
+            <div id="line-8" class="horizontal-line  make-diagonal-minus" style="top: -1px; left: -54px;"></div>
 
         </div>
 
@@ -104,6 +105,12 @@
                 <img src="./img/cross.png"><span>Player 2</span>
             </div>
         </div>
+
+        <div class="game-over">
+            <span id="cross-win" class="game-over d-none">CROSS WINS!</span>
+            <span id="circle-win" class="game-over d-none">CIRCLE WINS!</span>
+        </div>
+
     </main>
 </body>
 
