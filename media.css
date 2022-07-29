@@ -1,0 +1,39 @@
+@media(max-width: 900px) {
+    main {
+        margin-left: 1rem;
+    }
+
+    .player-panel {
+        display: none;
+    }
+
+    .player-panel-mobile {
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        top: 70%;
+        font-size: 2rem;
+        margin-top: 2rem;
+        justify-content: space-between;
+        height: 240px;
+    }
+
+    .player-panel-mobile img {
+        width: 30px;
+        height: 30px;
+        margin-right: 1rem;
+    }
+
+    .buttons {
+        display: none;
+    }
+
+    .buttons-mobile {
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        top: 75%;
+        width: 60%;
+    }
+
+}

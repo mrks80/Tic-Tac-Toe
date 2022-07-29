@@ -22,64 +22,44 @@ h1 {
 main {
     display: flex;
     align-items: center;
-
+    width: auto;
 }
 
-.player-panel {
-    font-size: 2rem;
-    margin-top: 32px;
+.buttons {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 240px;
+    margin-left: 1rem;
 }
 
-.player-panel div {
-    display: flex;
-    align-items: center;
-    margin-left: 16px;
-    margin-right: 16px;
+.sound {
+    height: 48px;
+    width: 150px;
+    margin-top: 2rem;
+    margin-right: 1rem;
+    background-color: rgba(255, 255, 255, 0.5);
     color: #fff;
+    font-size: 1.5rem;
 }
 
-.player-panel img {
-    width: 60px;
-    height: 60px;
-    margin-right: 16px;
+.volume {
+    height: 32px;
+    width: 150px;
+    margin-top: 2rem;
+    margin-right: 1rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+    font-size: 1.5rem;
+    font-family: 'Cantarell', 'sans-serif';
+    text-align: center;
 }
 
-.player-inactive {
-    opacity: 0.5;
-}
-
-table {
-    width: 500px;
-    height: 500px;
-    border-collapse: collapse;
-}
-
-td {
-    position: relative;
-    width: 140px;
-    height: 140px;
-    border: 8px solid #fff;
-    cursor: pointer;
-}
-
-td:hover {
-    background-color: rgba(192, 223, 201, 0.1);
-}
-
-.shape {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    bottom: 15px;
-    left: 14px;
-}
-
-.d-none {
-    display: none;
+.volume select {
+    height: 48px;
+    width: 150px;
+    margin-right: 1rem;
+    background-color: lightgray;
+    color: #000;
+    font-size: 1.5rem;
 }
 
 .make-lines {
@@ -110,65 +90,95 @@ td:hover {
     transform: rotate(-45deg) scaleX(0.0);
 }
 
-.buttons {
+table {
+    width: 500px;
+    height: 500px;
+    border-collapse: collapse;
+}
+
+td {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    border: 8px solid #fff;
+    cursor: pointer;
+}
+
+td:hover {
+    background-color: rgba(192, 223, 201, 0.1);
+}
+
+.shape {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    bottom: 0.9375rem;
+    left: 0.875rem;
+}
+
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: -0.5%;
+    width: 100%;
+    background:#ebe22f;
+    font:small-caps, Arial, sans-serif;
+    font-weight: bold; 
+    font-size: 2.5rem;
+    color:black; 
+    transform: rotate(-15deg);
+    text-align: center;
+    z-index: 2;
+    animation: zoomIn 1500ms ease-in-out; /* Animation "zooIn* wird erstellt */
+}
+
+@keyframes zoomIn { /* Animation "zooIn* wird aufgerufen */
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.player-panel {
+    font-size: 2rem;
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 240px;
+}
+
+.player-panel div {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    color: #fff;
+}
+
+.player-panel img {
+    width: 60px;
+    height: 60px;
+    margin-right: 1rem;
+}
+
+.player-inactive {
+    opacity: 0.5;
 }
 
 .restart-btn {
     height: 48px;
     width: 150px;
-    margin-top: 32px;
-    margin-right: 16px;
+    margin-top: 2rem;
+    margin-right: 1rem;
     background-color: rgba(255, 255, 255, 0.5);
     color: #fff;
     font-size: 1.5rem;
 }
 
-.sound {
-    height: 48px;
-    width: 150px;
-    margin-top: 32px;
-    margin-right: 16px;
-    background-color: rgba(255, 255, 255, 0.5);
-    color: #fff;
-    font-size: 1.5rem;
+.d-none {
+    display: none;
 }
-
-.volume {
-    height: 32px;
-    width: 150px;
-    margin-top: 32px;
-    margin-right: 16px;
-    background-color: rgba(255, 255, 255, 0.5);
-    color: #fff;
-    font-size: 1.5rem;
-    font-family: 'Cantarell', 'sans-serif';
-    text-align: center;
-}
-
-.volume select {
-    height: 48px;
-    width: 150px;
-    margin-right: 16px;
-    background-color: lightgray;
-    color: #000;
-    font-size: 1.5rem;
-}
-
-.game-over {
-    position: absolute;
-    top: 13%;
-    left: 16%;
-    width: 60%;
-    background:#ebe22f;
-    color:black;
-    font:small-caps bold 1.5em/150% Arial, sans-serif; 
-    font-size: 2.5rem; 
-    margin-top:4em;
-    transform: rotate(-15deg);
-    text-align: center;
-    /* transform: scaleX(0.0);
-    transition: transform 1000ms ease-in-out; */
-    z-index: 2;
-  }

@@ -147,11 +147,12 @@ function changeVolume() {
 function endScreen() {
     if (currentShape === 'cross') {
         document.getElementById('cross-win').classList.remove('d-none');
+        document.getElementById('cross-win').style.transform = 'scaleX(1)';
     }
 
     if (currentShape === 'circle') {
         document.getElementById('circle-win').classList.remove('d-none');
-        // document.getElementById('circle-win').style.transform = 'scaleX(1) rotate(-15deg)';
+        document.getElementById('circle-win').style.transform = 'scaleX(1)';
         document.getElementById('cross-win').classList.add('d-none');
     }
 
