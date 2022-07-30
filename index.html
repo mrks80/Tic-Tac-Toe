@@ -98,6 +98,7 @@
                 <div class="game-over">
                     <span id="cross-win" class="game-over d-none">CROSS WINS!</span>
                     <span id="circle-win" class="game-over d-none">CIRCLE WINS!</span>
+                    <span id="draw" class="game-over d-none">It's a draw!</span>
                 </div>
             </table>
         </div>
@@ -119,27 +120,27 @@
     ================================================================================================================================================
 -->
         <div class="player-panel-mobile d-none">
-            <div class="player-inactive" id="player-1">
+            <div class="player-inactive" id="player-1-mobile">
                 <img src="./img/circle.png"><span>Player 1</span>
             </div>
-            <div class="player-inactive" id="player-2">
+            <div class="player-inactive" id="player-2-mobile">
                 <img src="./img/cross.png"><span>Player 2</span>
             </div>
         </div>
 
         <div class="buttons-mobile d-none">
-            <button onclick="restart()" id="restart-btn" class="restart-btn">Restart</button>
-            <button onclick="playMusic()" class="sound">Music On</button>
-            <button onclick="stopMusic()" class="sound">Music Off</button>
+            <button onclick="restart()" id="restart-btn-mobile" class="restart-btn"><img src="./img/refresh.png"></button>
+            <button onclick="playMusic()" class="sound"><img src="./img/music-note.png"></button>
+            <button onclick="stopMusic()" class="sound"><img src="./img/mute-volume.png"></button>
 
             <div class="volume" onchange="changeVolume()">
-                <label for="volume">Volume</label>
-                <select name="volume" id="volume">
+                <label for="volume"><img src="./img/volume-up.png"></label>
+                <select name="volume" id="volume-mobile">
                     <option value="1">100%</option>
                     <option selected="" value="0.75">75%</option>
                     <option selected="" value="0.5">50%</option>
                     <option selected="" value="0.25">25%</option>
-                    <option value="0">0%</option>
+                    <option value="0">0</option>
                 </select>
             </div>
         </div>

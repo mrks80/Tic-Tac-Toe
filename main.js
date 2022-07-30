@@ -5,6 +5,7 @@ let gameOver = false;
 let audio_background = new Audio('./audio/background_music_3:40.mp3');
 let audio_click = new Audio('./audio/click.mp3');
 let audio_win = new Audio('./audio/win_sound.mp3');
+let audio_draw = new Audio('./audio/draw.mp3');
 
 function fillShape(id) {
     if (!fields[id] && !gameOver) {
@@ -13,6 +14,8 @@ function fillShape(id) {
             currentShape = 'circle';
             document.getElementById('player-1').classList.remove('player-inactive');
             document.getElementById('player-2').classList.add('player-inactive');
+            document.getElementById('player-1-mobile').classList.remove('player-inactive');
+            document.getElementById('player-2-mobile').classList.add('player-inactive');
             audio_click.play();
 
 
@@ -20,6 +23,8 @@ function fillShape(id) {
             currentShape = 'cross';
             document.getElementById('player-2').classList.remove('player-inactive');
             document.getElementById('player-1').classList.add('player-inactive');
+            document.getElementById('player-2-mobile').classList.remove('player-inactive');
+            document.getElementById('player-1-mobile').classList.add('player-inactive');
             audio_click.play();
         }
         fields[id] = currentShape;
@@ -106,6 +111,19 @@ function checkForWin() {
         audio_win.play();
         endScreen();
     }
+    if (!winner && fields[0] && fields[1] && fields[2] && fields[3] && fields[4] && fields[5] && fields[6] &&
+        fields[7] && fields[8]) {
+        console.log('Unentschieden');
+        gameOver = true;
+        audio_draw.play();
+        endScreenDraw();
+    }
+
+}
+function endScreenDraw() {
+    document.getElementById('draw').classList.remove('d-none');
+    document.getElementById('draw').style.transform = 'scaleX(1)';
+
 }
 
 function restart() {
@@ -122,7 +140,9 @@ function restart() {
         document.getElementById('circle-' + i).classList.add('d-none');
         document.getElementById('cross-' + i).classList.add('d-none');
     }
-  
+
+    document.getElementById('draw').classList.add('d-none'); // fügt "d-none" bei Unentschieden hinzu
+
 }
 
 function playMusic() {
@@ -136,7 +156,8 @@ function stopMusic() {
 }
 
 function changeVolume() {
-    volume = document.getElementById("volume").value;
+    volume = document.getElementById('volume').value;
+    volume = document.getElementById('volume-mobile').value;
     audio_background.volume = volume;
     audio_win.volume = volume;
     audio_click.volume = volume;
