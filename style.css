@@ -13,9 +13,10 @@ body {
 }
 
 h1 {
-    margin-top: 10%;
-    font-family: 'Cantarell', 'sans-serif';
-    font-size: 3rem;
+    margin-top: 7%;
+    font-family: 'Indie Flower', cursive;
+    text-decoration: underline;
+    font-size: 4rem;
     color: #fff;
 }
 
@@ -31,12 +32,24 @@ main {
     margin-left: 1rem;
 }
 
+.buttons button:hover {
+    background-color: rgba(192, 223, 201, 0.1);
+    cursor: pointer;
+}
+
+.buttons button:active {
+    box-shadow:
+      7px 6px 28px 1px rgba(192, 223, 201, 0.1);
+    transform: translateY(4px);
+}
+
 .sound {
     height: 48px;
     width: 150px;
     margin-top: 2rem;
     margin-right: 1rem;
     background-color: rgba(255, 255, 255, 0.5);
+    font-family: 'Nunito', sans-serif;
     color: #fff;
     font-size: 1.5rem;
 }
@@ -49,7 +62,7 @@ main {
     background-color: rgba(255, 255, 255, 0.5);
     color: #fff;
     font-size: 1.5rem;
-    font-family: 'Cantarell', 'sans-serif';
+    font-family: 'Nunito', sans-serif;
     text-align: center;
 }
 
@@ -122,7 +135,7 @@ td:hover {
     left: -0.5%;
     width: 100%;
     background:#ebe22f;
-    font:small-caps, Arial, sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: bold; 
     font-size: 2.5rem;
     color:black; 
@@ -156,6 +169,7 @@ td:hover {
     align-items: center;
     margin-left: 1rem;
     margin-right: 1rem;
+    font-family: 'Nunito', sans-serif;
     color: #fff;
 }
 
@@ -175,6 +189,7 @@ td:hover {
     margin-top: 2rem;
     margin-right: 1rem;
     background-color: rgba(255, 255, 255, 0.5);
+    font-family: 'Nunito', sans-serif;
     color: #fff;
     font-size: 1.5rem;
 }

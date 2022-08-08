@@ -1,39 +1,59 @@
 fields = [];
 let currentShape = 'cross';
 let gameOver = false;
+let winner;
 
 let audio_background = new Audio('./audio/background_music_3:40.mp3');
 let audio_click = new Audio('./audio/click.mp3');
 let audio_win = new Audio('./audio/win_sound.mp3');
 let audio_draw = new Audio('./audio/draw.mp3');
 
+
 function fillShape(id) {
     if (!fields[id] && !gameOver) {
 
         if (currentShape == 'cross') {
             currentShape = 'circle';
-            document.getElementById('player-1').classList.remove('player-inactive');
-            document.getElementById('player-2').classList.add('player-inactive');
-            document.getElementById('player-1-mobile').classList.remove('player-inactive');
-            document.getElementById('player-2-mobile').classList.add('player-inactive');
+            player1();
             audio_click.play();
 
 
         } else {
             currentShape = 'cross';
-            document.getElementById('player-2').classList.remove('player-inactive');
-            document.getElementById('player-1').classList.add('player-inactive');
-            document.getElementById('player-2-mobile').classList.remove('player-inactive');
-            document.getElementById('player-1-mobile').classList.add('player-inactive');
+            player2();
             audio_click.play();
         }
         fields[id] = currentShape;
         draw();
-        checkForWin();
+        let val1 = checkForWin_horizontal();
+        let val2 = checkForWin_vertical();
+        let val3 = checkForWin_diagonal();
+
+        if (val1 || val2 || val3 === 'circle' || 'cross') {
+            checkResultWin(winner);
+        } else {
+            checkResultDraw(winner);
+        }
     }
 }
 
+
+function player1() {
+    let player1 = document.getElementById('player-1').classList.remove('player-inactive');
+    document.getElementById('player-2').classList.add('player-inactive');
+    document.getElementById('player-1-mobile').classList.remove('player-inactive');
+    document.getElementById('player-2-mobile').classList.add('player-inactive');
+}
+
+function player2() {
+    let player2 = document.getElementById('player-2').classList.remove('player-inactive');
+    document.getElementById('player-1').classList.add('player-inactive');
+    document.getElementById('player-2-mobile').classList.remove('player-inactive');
+    document.getElementById('player-1-mobile').classList.add('player-inactive');
+}
+
 function draw() {
+
     for (let i = 0; i < fields.length; i++) {
 
         if (fields[i] == 'circle') {
@@ -46,9 +66,8 @@ function draw() {
     }
 }
 
-function checkForWin() {
 
-    let winner;
+function checkForWin_horizontal() {
 
     // First row horizontal 
     if (fields[0] == fields[1] && fields[1] == fields[2] && fields[0]) {
@@ -70,6 +89,11 @@ function checkForWin() {
         document.getElementById('line-3').style.transform = 'scaleX(1)';
         document.getElementById('line-3').classList.remove('d-none');
     }
+    return winner;
+}
+
+
+function checkForWin_vertical() {
 
     // First row vertical
     if (fields[0] == fields[3] && fields[3] == fields[6] && fields[0]) {
@@ -91,26 +115,50 @@ function checkForWin() {
         document.getElementById('line-6').style.transform = 'scaleX(1) rotate(90deg)';
         document.getElementById('line-6').classList.remove('d-none');
     }
+    return winner;
+}
+
+
+function checkForWin_diagonal() {
 
     // First row diagonal
-    if (fields[0] == fields[4] && fields[4] == fields[8] && fields[0]) {
+    if (fields[0] === fields[4] && fields[4] === fields[8] && fields[0]) {
         winner = fields[0];
         document.getElementById('line-7').style.transform = 'scaleX(1) rotate(45deg)';
         document.getElementById('line-7').classList.remove('d-none');
     }
+
     // Second row diagonal 
-    if (fields[2] == fields[4] && fields[4] == fields[6] && fields[2]) {
+    if (fields[2] === fields[4] && fields[4] === fields[6] && fields[2]) {
         winner = fields[2];
         document.getElementById('line-8').style.transform = 'scaleX(1) rotate(-45deg)';
         document.getElementById('line-8').classList.remove('d-none');
     }
+    return winner;
+}
+
+// function checkResults(winner) {
+//     if (winner) {
+//         return checkResultWin(winner);
+//     } else {
+//         return checkResultDraw(winner);
+//     }
+// }
+
+
+function checkResultWin() {
 
     if (winner) {
-        console.log('Gewonnen:', winner)
+        console.log('Gewonnen:', winner);
         gameOver = true;
         audio_win.play();
         endScreen();
     }
+}
+
+
+function checkResultDraw(winner) {
+
     if (!winner && fields[0] && fields[1] && fields[2] && fields[3] && fields[4] && fields[5] && fields[6] &&
         fields[7] && fields[8]) {
         console.log('Unentschieden');
@@ -118,15 +166,10 @@ function checkForWin() {
         audio_draw.play();
         endScreenDraw();
     }
-
-}
-function endScreenDraw() {
-    document.getElementById('draw').classList.remove('d-none');
-    document.getElementById('draw').style.transform = 'scaleX(1)';
-
 }
 
 function restart() {
+
     gameOver = false;
     fields = [];
 
@@ -145,25 +188,39 @@ function restart() {
 
 }
 
+
 function playMusic() {
     audio_background.play();
     audio_background.loop = true;
 }
+
 
 function stopMusic() {
     audio_background.currentTime = 0;
     audio_background.pause();
 }
 
+
 function changeVolume() {
     volume = document.getElementById('volume').value;
+    audio_background.volume = volume;
+    audio_win.volume = volume;
+    audio_click.volume = volume;
+    audio_draw.volume = volume;
+
+    console.log(volume);
+}
+
+function changeVolume_mobile() {
     volume = document.getElementById('volume-mobile').value;
     audio_background.volume = volume;
     audio_win.volume = volume;
     audio_click.volume = volume;
+    audio_draw.volume = volume;
 
     console.log(volume);
 }
+
 
 function endScreen() {
     if (currentShape === 'cross') {
@@ -176,6 +233,10 @@ function endScreen() {
         document.getElementById('circle-win').style.transform = 'scaleX(1)';
         document.getElementById('cross-win').classList.add('d-none');
     }
-
 }
 
+
+function endScreenDraw() {
+    document.getElementById('draw').classList.remove('d-none');
+    document.getElementById('draw').style.transform = 'scaleX(1)';
+}
