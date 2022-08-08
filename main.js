@@ -12,28 +12,35 @@ let audio_draw = new Audio('./audio/draw.mp3');
 function fillShape(id) {
     if (!fields[id] && !gameOver) {
 
-        if (currentShape == 'cross') {
+        if (currentShape === 'cross') {
             currentShape = 'circle';
             player1();
             audio_click.play();
-
-
         } else {
             currentShape = 'cross';
             player2();
             audio_click.play();
         }
-        fields[id] = currentShape;
-        draw();
-        let val1 = checkForWin_horizontal();
-        let val2 = checkForWin_vertical();
-        let val3 = checkForWin_diagonal();
 
-        if (val1 || val2 || val3 === 'circle' || 'cross') {
-            checkResultWin(winner);
-        } else {
-            checkResultDraw(winner);
-        }
+        fields[id] = currentShape;
+        makeToken();
+        winOrDraw();
+    }
+
+}
+
+function winOrDraw() {
+
+    let val1 = checkForWin_horizontal();
+    let val2 = checkForWin_vertical();
+    let val3 = checkForWin_diagonal();
+
+    if (val1 || val2 || val3 === true) {
+        checkResultWin(winner);
+    }
+
+    if (val1 || val2 || val3 === undefined) {
+        checkResultDraw(winner);
     }
 }
 
@@ -52,39 +59,38 @@ function player2() {
     document.getElementById('player-1-mobile').classList.add('player-inactive');
 }
 
-function draw() {
+function makeToken() {
 
     for (let i = 0; i < fields.length; i++) {
 
-        if (fields[i] == 'circle') {
+        if (fields[i] === 'circle') {
             document.getElementById('circle-' + i).classList.remove('d-none');
         }
 
-        if (fields[i] == 'cross') {
+        if (fields[i] === 'cross') {
             document.getElementById('cross-' + i).classList.remove('d-none');
         }
     }
 }
 
-
 function checkForWin_horizontal() {
 
     // First row horizontal 
-    if (fields[0] == fields[1] && fields[1] == fields[2] && fields[0]) {
+    if (fields[0] === fields[1] && fields[1] === fields[2] && fields[0]) {
         winner = fields[0];
         document.getElementById('line-1').style.transform = 'scaleX(1)';
         document.getElementById('line-1').classList.remove('d-none');
     }
 
     // Second row horizontal 
-    if (fields[3] == fields[4] && fields[4] == fields[5] && fields[3]) {
+    if (fields[3] === fields[4] && fields[4] === fields[5] && fields[3]) {
         winner = fields[3];
         document.getElementById('line-2').style.transform = 'scaleX(1)';
         document.getElementById('line-2').classList.remove('d-none');
     }
 
     // Third row horizontal 
-    if (fields[6] == fields[7] && fields[7] == fields[8] && fields[6]) {
+    if (fields[6] === fields[7] && fields[7] === fields[8] && fields[6]) {
         winner = fields[6];
         document.getElementById('line-3').style.transform = 'scaleX(1)';
         document.getElementById('line-3').classList.remove('d-none');
@@ -96,21 +102,21 @@ function checkForWin_horizontal() {
 function checkForWin_vertical() {
 
     // First row vertical
-    if (fields[0] == fields[3] && fields[3] == fields[6] && fields[0]) {
+    if (fields[0] === fields[3] && fields[3] === fields[6] && fields[0]) {
         winner = fields[0];
         document.getElementById('line-4').style.transform = 'scaleX(1) rotate(90deg)';
         document.getElementById('line-4').classList.remove('d-none');
     }
 
     // Second row vertical
-    if (fields[1] == fields[4] && fields[4] == fields[7] && fields[1]) {
+    if (fields[1] === fields[4] && fields[4] === fields[7] && fields[1]) {
         winner = fields[1];
         document.getElementById('line-5').style.transform = 'scaleX(1) rotate(90deg)';
         document.getElementById('line-5').classList.remove('d-none');
     }
 
     // Third row vertical 
-    if (fields[2] == fields[5] && fields[5] == fields[8] && fields[2]) {
+    if (fields[2] === fields[5] && fields[5] === fields[8] && fields[2]) {
         winner = fields[2];
         document.getElementById('line-6').style.transform = 'scaleX(1) rotate(90deg)';
         document.getElementById('line-6').classList.remove('d-none');
@@ -137,16 +143,8 @@ function checkForWin_diagonal() {
     return winner;
 }
 
-// function checkResults(winner) {
-//     if (winner) {
-//         return checkResultWin(winner);
-//     } else {
-//         return checkResultDraw(winner);
-//     }
-// }
 
-
-function checkResultWin() {
+function checkResultWin(winner) {
 
     if (winner) {
         console.log('Gewonnen:', winner);
@@ -184,8 +182,7 @@ function restart() {
         document.getElementById('cross-' + i).classList.add('d-none');
     }
 
-    document.getElementById('draw').classList.add('d-none'); // fügt "d-none" bei Unentschieden hinzu
-
+    document.getElementById('draw').classList.add('d-none'); 
 }
 
 
