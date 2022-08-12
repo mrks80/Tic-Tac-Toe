@@ -39,7 +39,7 @@ main {
 
 .buttons button:active {
     box-shadow:
-      7px 6px 28px 1px rgba(192, 223, 201, 0.1);
+        7px 6px 28px 1px rgba(192, 223, 201, 0.1);
     transform: translateY(4px);
 }
 
@@ -134,18 +134,21 @@ td:hover {
     top: 50%;
     left: -0.5%;
     width: 100%;
-    background:#ebe22f;
+    background: #ebe22f;
     font-family: 'Nunito', sans-serif;
-    font-weight: bold; 
+    font-weight: bold;
     font-size: 2.5rem;
-    color:black; 
+    color: black;
     transform: rotate(-15deg);
     text-align: center;
     z-index: 2;
-    animation: zoomIn 1500ms ease-in-out; /* Animation "zooIn* wird erstellt */
+    animation: zoomIn 1500ms ease-in-out;
+    /* Animation "zooIn* wird erstellt */
 }
 
-@keyframes zoomIn { /* Animation "zooIn* wird aufgerufen */
+@keyframes zoomIn {
+
+    /* Animation "zooIn* wird aufgerufen */
     from {
         opacity: 0;
     }

@@ -144,7 +144,7 @@ function winOrDraw() {
     let val2 = checkForWin_vertical();
     let val3 = checkForWin_diagonal();
 
-    if (val1 || val2 || val3 === winner) { 
+    if (val1 || val2 || val3 === winner) {
         checkResultWin(winner);
     }
 
@@ -202,7 +202,7 @@ function restart() {
         document.getElementById('cross-' + i).classList.add('d-none');
     }
 
-    document.getElementById('draw').classList.add('d-none'); 
+    document.getElementById('draw').classList.add('d-none');
 }
 
 /*
