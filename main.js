@@ -26,23 +26,8 @@ function fillShape(id) {
         makeToken();
         winOrDraw();
     }
-
 }
 
-function winOrDraw() {
-
-    let val1 = checkForWin_horizontal();
-    let val2 = checkForWin_vertical();
-    let val3 = checkForWin_diagonal();
-
-    if (val1 || val2 || val3 === true) {
-        checkResultWin(winner);
-    }
-
-    if (val1 || val2 || val3 === undefined) {
-        checkResultDraw(winner);
-    }
-}
 
 
 function player1() {
@@ -59,6 +44,7 @@ function player2() {
     document.getElementById('player-1-mobile').classList.add('player-inactive');
 }
 
+
 function makeToken() {
 
     for (let i = 0; i < fields.length; i++) {
@@ -72,6 +58,14 @@ function makeToken() {
         }
     }
 }
+
+/*
+============================================================================================
+
+CHECK FOR WIN
+
+============================================================================================
+*/
 
 function checkForWin_horizontal() {
 
@@ -144,6 +138,21 @@ function checkForWin_diagonal() {
 }
 
 
+function winOrDraw() {
+
+    let val1 = checkForWin_horizontal();
+    let val2 = checkForWin_vertical();
+    let val3 = checkForWin_diagonal();
+
+    if (val1 || val2 || val3 === winner) { 
+        checkResultWin(winner);
+    }
+
+    if (!winner) {
+        checkResultDraw(winner);
+    }
+}
+
 function checkResultWin(winner) {
 
     if (winner) {
@@ -166,10 +175,21 @@ function checkResultDraw(winner) {
     }
 }
 
+/*
+============================================================================================
+
+RESTART
+
+============================================================================================
+*/
+
+
 function restart() {
 
     gameOver = false;
     fields = [];
+    winner = '';
+
 
     for (let i = 1; i < 9; i++) {
         document.getElementById('line-' + i).classList.add('d-none');
@@ -184,6 +204,14 @@ function restart() {
 
     document.getElementById('draw').classList.add('d-none'); 
 }
+
+/*
+============================================================================================
+
+AUDIO
+
+============================================================================================
+*/
 
 
 function playMusic() {
@@ -217,6 +245,15 @@ function changeVolume_mobile() {
 
     console.log(volume);
 }
+
+
+/*
+============================================================================================
+
+ENDSCREEN
+
+============================================================================================
+*/
 
 
 function endScreen() {
